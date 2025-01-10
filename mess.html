@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dubai Mess</title>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Lato:wght@300;400;700&display=swap");
+
+      :root {
+        --gold: #be9355;
+        --light-gold: #d4af37;
+        --dark: #1a1a1a;
+        --light: #f5f5f5;
+        --white: #ffffff;
+        --transition: all 0.3s ease;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        scroll-behavior: smooth;
+      }
+
+      body {
+        font-family: "Lato", sans-serif;
+        line-height: 1.6;
+        background-color: var(--dark);
+        color: var(--light);
+      }
+
+      /* Enhanced Header */
+      .header {
+        background-color: rgba(26, 26, 26, 0.95);
+        position: fixed;
+        width: 100%;
+        top: 0;
+        z-index: 1000;
+        border-bottom: 1px solid rgba(190, 147, 85, 0.3);
+        backdrop-filter: blur(10px);
+      }
+
+      .nav {
+        max-width: 1400px;
+        margin: 0 auto;
+        padding: 1.5rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .heroLogo{
+        font-family: "Playfair Display", serif;
+        font-size: 2rem;
+        color: var(--gold);
+        text-decoration: none;
+        width: 10rem;
+        height: 10rem;
+        border-radius: 100%;
+      }
+
+      .logoContainer{
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+      }
+
+      .logo {
+        font-family: "Playfair Display", serif;
+        font-size: 2rem;
+        color: var(--gold);
+        text-decoration: none;
+        width: 2rem;
+        height: 2rem;
+        border-radius: 100%;
+      }
+
+      .logoname{
+        font-family: "Playfair Display", serif;
+        font-size: 2rem;
+        color: var(--gold);
+        text-decoration: none;
+      }
+
+      .nav-links {
+        display: flex;
+        gap: 2rem;
+      }
+
+      .nav-links a {
+        text-decoration: none;
+        color: var(--light);
+        font-weight: 300;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        font-size: 0.9rem;
+        position: relative;
+        padding: 0.5rem 0;
+      }
+
+      .nav-links a::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 0;
+        height: 1px;
+        background-color: var(--gold);
+        transition: var(--transition);
+      }
+
+      .nav-links a:hover::after {
+        width: 100%;
+      }
+
+      /* Enhanced Hero Section */
+      .hero {
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+          url("/api/placeholder/1920/1080");
+        background-size: cover;
+        background-position: center;
+        background-attachment: fixed;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .hero::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: radial-gradient(
+          circle,
+          rgba(190, 147, 85, 0.2) 0%,
+          rgba(0, 0, 0, 0.4) 100%
+        );
+      }
+
+      .hero-content {
+        max-width: 800px;
+        position: relative;
+        z-index: 2;
+        padding: 2rem;
+      }
+
+      .hero h1 {
+        font-family: "Playfair Display", serif;
+        font-size: 4rem;
+        color: var(--white);
+        margin-bottom: 1rem;
+        line-height: 1.2;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+      }
+
+      .hero p {
+        font-size: 1.2rem;
+        color: var(--light);
+        margin-bottom: 2rem;
+        font-weight: 300;
+      }
+
+      /* Enhanced Menu Sections */
+      .menu-section {
+        padding: 6rem 1.5rem;
+        position: relative;
+        background-size: cover;
+        background-position: center;
+        background-attachment: fixed;
+      }
+
+      #lunch {
+        background: linear-gradient(rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.85)),
+          url("/api/placeholder/1200/800");
+      }
+
+      #dinner {
+        background: linear-gradient(rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.85)),
+          url("/api/placeholder/1200/800");
+      }
+
+      .menu-content {
+        max-width: 1400px;
+        margin: 0 auto;
+        position: relative;
+        z-index: 2;
+      }
+
+      .section-title {
+        text-align: center;
+        margin-bottom: 4rem;
+      }
+
+      .section-title h2 {
+        font-family: "Playfair Display", serif;
+        font-size: 3rem;
+        color: var(--gold);
+        margin-bottom: 1rem;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+      }
+
+      .menu-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 2rem;
+      }
+
+      .menu-category {
+        background: rgba(26, 26, 26, 0.95);
+        border: 1px solid rgba(190, 147, 85, 0.3);
+        padding: 2rem;
+        border-radius: 8px;
+        backdrop-filter: blur(10px);
+        transition: var(--transition);
+      }
+
+      .menu-category:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 30px rgba(190, 147, 85, 0.2);
+      }
+
+      .menu-item {
+        margin-bottom: 2rem;
+        position: relative;
+        padding-left: 1rem;
+      }
+
+      .menu-item::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 0;
+        bottom: 0;
+        width: 2px;
+        background: var(--gold);
+        opacity: 0.3;
+      }
+
+      .menu-item h4 {
+        color: var(--white);
+        font-size: 1.2rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 0.5rem;
+      }
+
+      .menu-item .price {
+        color: var(--gold);
+        font-weight: bold;
+      }
+
+      .btn {
+        display: inline-block;
+        padding: 1rem 2rem;
+        background-color: var(--gold);
+        color: var(--white);
+        text-decoration: none;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        font-size: 0.9rem;
+        transition: var(--transition);
+        border: 1px solid var(--gold);
+        box-shadow: 0 4px 15px rgba(190, 147, 85, 0.3);
+      }
+
+      .btn:hover {
+        background-color: transparent;
+        color: var(--gold);
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba(190, 147, 85, 0.4);
+      }
+
+      /* Enhanced Footer */
+      .footer {
+        background: linear-gradient(rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.9)),
+          url("/api/placeholder/1200/800");
+        background-size: cover;
+        background-position: center;
+        padding: 4rem 1.5rem;
+        border-top: 1px solid rgba(190, 147, 85, 0.3);
+        position: relative;
+      }
+
+      .footer::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.8);
+      }
+
+      .footer-content {
+        max-width: 1400px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 3rem;
+        position: relative;
+        z-index: 2;
+      }
+
+      .footer-section {
+        padding: 2rem;
+        background: rgba(26, 26, 26, 0.8);
+        border-radius: 8px;
+        backdrop-filter: blur(10px);
+      }
+
+      .footer-section h3 {
+        color: var(--gold);
+        font-family: "Playfair Display", serif;
+        font-size: 1.5rem;
+        margin-bottom: 1.5rem;
+        padding-bottom: 0.5rem;
+        border-bottom: 1px solid rgba(190, 147, 85, 0.3);
+      }
+
+      @media screen and (max-width: 768px) {
+        .nav {
+          flex-direction: column;
+          gap: 1rem;
+        }
+
+        .hero h1 {
+          font-size: 2.5rem;
+        }
+
+        .section-title h2 {
+          font-size: 2rem;
+        }
+
+        .menu-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Header remains the same -->
+    <header class="header">
+      <nav class="nav">
+        <div class="logoContainer">
+            <img src="DUBAI MESS LOGO  RED BG LOGO SEND FINAL_page-0001.jpg" class="logo"></img>
+            <a href="#" class="logoname">Dubai Mess</a>
+        </div>
+        <div class="nav-links">
+          <a href="#lunch">Lunch</a>
+          <a href="#dinner">Dinner</a>
+          <a href="#contact">Contact</a>
+        </div>
+      </nav>
+    </header>
+
+    <!-- Enhanced Hero Section -->
+    <section class="hero">
+      <div class="hero-content">
+        <div>
+            <img src="DUBAI MESS LOGO  RED BG LOGO SEND FINAL_page-0001.jpg" class="heroLogo"></img>
+        </div>
+        <h1>Dubai Mess Finest Dining</h1>
+        <p>Experience culinary excellence in the heart of luxury</p>
+        <a href="#lunch" class="btn">Explore Menu</a>
+      </div>
+    </section>
+
+    <!-- Enhanced Menu Sections -->
+    <section id="lunch" class="menu-section">
+      <div class="menu-content">
+        <div class="section-title">
+          <h2>Lunch Menu</h2>
+          <p>Served 11:00 AM - 11:00 PM</p>
+        </div>
+        <div class="menu-grid">
+          <div class="menu-category">
+            <h3>Starters</h3>
+            <div class="menu-item">
+              <h4>Gold Leaf Arabic Mezze <span class="price">Rs 120</span></h4>
+              <p class="description">
+                Premium selection with gold-dusted pita bread
+              </p>
+            </div>
+            <div class="menu-item">
+              <h4>Truffle Hummus <span class="price">Rs 85</span></h4>
+              <p class="description">
+                Fresh hummus with black truffle and olive oil
+              </p>
+            </div>
+          </div>
+          <div class="menu-category">
+            <h3>Main Course</h3>
+            <div class="menu-item">
+              <h4>Royal Mixed Grill <span class="price">Rs 280</span></h4>
+              <p class="description">
+                Selection of premium meats with saffron rice
+              </p>
+            </div>
+            <div class="menu-item">
+              <h4>Seafood Machbous <span class="price">Rs 220</span></h4>
+              <p class="description">
+                Traditional rice with lobster and prawns
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="dinner" class="menu-section">
+      <div class="menu-content">
+        <div class="section-title">
+          <h2>Night Menu</h2>
+          <p>Served 11:00 PM - 3:00 AM</p>
+        </div>
+        <div class="menu-grid">
+          <div class="menu-category">
+            <h3>Premium Starters</h3>
+            <div class="menu-item">
+              <h4>Caviar Selection <span class="price">Rs 480</span></h4>
+              <p class="description">Premium sturgeon caviar with garnishes</p>
+            </div>
+            <div class="menu-item">
+              <h4>Wagyu Carpaccio <span class="price">Rs 180</span></h4>
+              <p class="description">A5 wagyu with truffle and gold leaf</p>
+            </div>
+          </div>
+          <div class="menu-category">
+            <h3>Signature Dishes</h3>
+            <div class="menu-item">
+              <h4>Dubai Gold Tomahawk <span class="price">Rs 1200</span></h4>
+              <p class="description">1kg wagyu with 24k gold leaf</p>
+            </div>
+            <div class="menu-item">
+              <h4>Royal Camel Sirloin <span class="price">Rs 320</span></h4>
+              <p class="description">Premium camel meat with Arabic spices</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Enhanced Footer -->
+    <footer id="contact" class="footer">
+      <div class="footer-content">
+        <div class="footer-section">
+          <h3>Location</h3>
+          <p>Dubai Mess</p>
+          <p>TNHB Colony, </p>
+          <p>Civil Aerodrome Post, Sitra, Coimbatore, Tamil Nadu 641014</p>
+        </div>
+        <div class="footer-section">
+          <h3>Reservations</h3>
+          <p>Tel: 9894797030 </p>
+          <p> ph: 9944994423 </p>
+          <p>Email: dubaimesscbe@gmail.com</p>
+          <p>VIP Bookings Available</p>
+        </div>
+        <div class="footer-section">
+          <h3>Opening Hours</h3>
+          <p>Lunch: 12:00 PM - 3:30 PM</p>
+          <p>Dinner: 6:30 PM - 11:00 PM</p>
+          <p>Friday Brunch: 1:00 PM - 4:00 PM</p>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
